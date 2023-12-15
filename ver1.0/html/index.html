@@ -13,12 +13,15 @@
       <div class="omer-form" id="giris-formu">
         <div>
           <div class="container-fluid">
-              <div class="col-12 mb-3 fs-3 text-center fw-bold mt-2">GİRİŞ FORMU</div>
-              <div class="col-12 mb-3"><input type="text" id="giris-kadi-input" class="form-control gk-input" placeholder="Kullanıcı Adı"></div>
-              <div class="col-12 mb-3"><input type="password" id="giris-sifre-input" class="form-control gk-input" placeholder="Şifre"></div>
-              <div class="col-12 mb-3"><button type="button" class="btn btn-primary w-100 islem-button" islem="girisYap">Giriş Yap</button></div>
-              <div class="col-12">
-                hesabın yok mu? <a class="form-degis cp" form="kayit-formu">Kayıt ol</a>
+              <div class="col-12 mb-3 fs-3 text-center fw-bold mt-2" kelime="giris" tip="innerHTML"></div>
+              <div class="col-12 mb-3"><input type="text" id="giris-kadi-input" class="form-control gk-input" kelime="kullanici_adi" tip="placeholder"></div>
+              <div class="col-12 mb-3"><input type="password" id="giris-sifre-input" class="form-control gk-input" kelime="sifre" tip="placeholder"></div>
+              <div class="col-12 mb-3"><button type="button" class="btn btn-primary w-100 islem-button" islem="girisYap" kelime="giris_yap" tip="innerHTML"></button></div>
+              <div class="row">
+                <div class="col-10 pt-2"><span kelime="hesabin_yok_mu" tip="innerHTML"></span>? <a class="form-degis cp" form="kayit-formu" kelime="kayit_ol" tip="innerHTML"></a></div>
+                <div class="col-2">
+                  <select dil="true" class="form-control text-center"></select>
+                </div>
               </div>
           </div>
         </div>
@@ -26,19 +29,29 @@
       <div class="omer-form" id="kayit-formu">
         <div>
           <div class="container-fluid">
-              <div class="col-12 mb-3 fs-3 text-center fw-bold mt-2"> KAYIT FORMU</div>
-              <div class="col-12 mb-3"><input type="text" id="kayit-kadi-input" class="form-control gk-input" placeholder="Kullanıcı Adı"></div>
-              <div class="col-12 mb-3"><input type="password" id="kayit-sifre-input" class="form-control gk-input" placeholder="Şifre"></div>
-              <div class="col-12 mb-3"><input type="password" id="kayit-sifre-tekrar-input" class="form-control gk-input" placeholder="Şifre Tekrar"></div>
-              <div class="col-12 mb-3"><button type="button" class="btn btn-primary w-100 islem-button" islem="kayitOl">Kayıt Ol</button></div>
-              <div class="col-12">Zaten bir hesabın var mı? <a class="form-degis cp" form="giris-formu">Giriş Yap</a></div>
+              <div class="col-12 mb-3 fs-3 text-center fw-bold mt-2" kelime="kayit" tip="innerHTML"></div>
+              <div class="col-12 mb-3"><input type="text" id="kayit-kadi-input" class="form-control gk-input" kelime="kullanici_adi" tip="placeholder"></div>
+              <div class="col-12 mb-3"><input type="password" id="kayit-sifre-input" class="form-control gk-input" kelime="sifre" tip="placeholder"></div>
+              <div class="col-12 mb-3"><input type="password" id="kayit-sifre-tekrar-input" class="form-control gk-input" kelime="sifre_tekrar" tip="placeholder"></div>
+              <div class="col-12 mb-3"><button type="button" class="btn btn-primary w-100 islem-button" islem="kayitOl" kelime="kayit_ol" tip="innerHTML">Kayıt Ol</button></div>
+              <div class="row">
+                <div class="col-10"><span kelime="zaten_bir_hesabin_var_mi" tip="innerHTML"></span>? <a class="form-degis cp" form="giris-formu" kelime="giris_yap" tip="innerHTML"></a></div>
+                <div class="col-2">
+                  <select dil="true" class="form-control text-center"></select>
+                </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
     <div id="oyun">
       <div id="oyun-div-ust">
-        <div></div>
+        <div>
+          <div style="width: 100%;">
+            <select dil="true" class="form-control text-center w-100" style="height: min-content;"></select>
+            <button type="button" class="btn btn-danger w-100" kelime="cikis_yap" tip="innerHTML" id="cikis_yap"></button>
+          </div>
+        </div>
         <canvas id="canvas"></canvas>
         <div></div>
       </div>

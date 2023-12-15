@@ -1,4 +1,7 @@
 import { Functions } from './class/utils.js'
+import { KELIMELER, DILLER } from './class/diller.js'
+import { Zemin } from './class/bloklar.js'
+
 let f = new Functions(),
 s = io("http://172.16.16.203:2313"),
 gia = fieldName => f.gid(`giris-${fieldName}-input`),
@@ -6,7 +9,9 @@ kia = fieldName => f.gid(`kayit-${fieldName}-input`),
 kontrol = null,
 oranti = 0,
 oyunBasladi = false,
-harita = null;
+harita = null,
+oyun = null,
+sozluk;
 
 s.on('bye', () => {window.location.href = 'https://www.youtube.com'})
 
@@ -17,19 +22,15 @@ s.on('oyun', ob => {
   }
 });
 
-function haritaCiz() {
-  
-}
+function haritaCiz() {}
 
 s.on('temizle', () => {
-  console.log('asdfads');
   localStorage.clear();
   window.location.reload();
 })
 
 s.on('giris', value => {
   localStorage.setItem('ben', JSON.stringify(value))
-  console.log('kontrol: ', localStorage.getItem('ben'))
   formDegis();
   if(!oyunBasladi) {
     animasyon();
@@ -105,15 +106,41 @@ function animasyon() {
   requestAnimationFrame(animasyon);
 }
 
+function kelimeleriYaz(el) {
+  if(el !== false) {
+    localStorage.setItem('dil', el.value);
+    sozluk = KELIMELER(localStorage.getItem('dil'));
+    f.qsa('[dil="true"]').forEach(ele => ele.value = el.value)
+  }
+  Object.keys(sozluk).forEach(kelime => {
+    document.querySelectorAll(`[kelime="${kelime}"]`).forEach(el => {
+      el[el.getAttribute('tip')] = sozluk[kelime];
+    })
+  })
+}
+
 onload = function() {
   formDegis();
-  f.qsa('.form-degis').forEach(el => el.addEventListener('click', () => { formDegis(el.getAttribute('form')) }))
-  f.qsa('.islem-button').forEach(el => el.addEventListener('click', () => { islem(el.getAttribute('islem')) }))
+  f.qsa('.form-degis').forEach(el => el.addEventListener('click', () => { formDegis(el.getAttribute('form')) }));
+  f.qsa('.islem-button').forEach(el => el.addEventListener('click', () => { islem(el.getAttribute('islem')) }));
+  f.qsa('[dil="true"]').forEach(el => el.addEventListener('change', () => {kelimeleriYaz(el)}));
+  oyun = new OYUN();
+  DILLER().forEach(dil => {
+    f.qsa('[dil="true"]').forEach(el => el.innerHTML += `<option value="${dil}"${dil == localStorage.getItem('dil') ? ' selected' : ''}>${dil}</option>`);
+  })
   oranti = f.gid('wal').offsetWidth / 100;
-  if(localStorage.getItem('ben')) {
-    s.emit('islem', {ilk: true, islem: "kontrol", data: {data: localStorage.getItem('ben')}})
-  } else {
+  if(localStorage.getItem('ben')) s.emit('islem', {ilk: true, islem: "kontrol", data: {data: localStorage.getItem('ben')}})
+  else {
     localStorage.removeItem('ben');
     formDegis('giris-formu');
+  }
+  if(!localStorage.getItem('dil')) localStorage.setItem('dil', 'tr');
+  sozluk = KELIMELER(localStorage.getItem('dil'));
+  kelimeleriYaz(false);
+}
+
+class OYUN {
+  constructor() {
+    this.zemin = new Zemin(this);
   }
 }
