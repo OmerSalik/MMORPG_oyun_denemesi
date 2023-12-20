@@ -1,0 +1,9 @@
+#game {
+  width: 100vw;
+  height: 100vh;
+  padding: 1em;
+}
+
+.a{
+  background-color: green;
+}
