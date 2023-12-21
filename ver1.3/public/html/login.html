@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/forms.css">
+  </head>
+  <body>
+    <div id="forms">
+      <form class="form" id="login">
+        <div class="text-center w-100 fs-2 fw-bold mb-4" word="login"></div>
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-md-6 col-12 mb-md-0 mb-3"><input class="form-control form-input" belong="login" type="text" word="username" feature="placeholder" maxlength="20" id="login-uname-input"></div>
+            <div class="col-md-6 col-12"><input class="form-control form-input" type="password" belong="login" word="password" feature="placeholder" maxlength="25" id="login-pass-input"></div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-8 col-12 mb-md-0 mb-3 pt-1">
+              <span word="no_account"></span>? <a e-text="." e-feature="cfl" e-text-if="do_signup" word="signup" href="#" form="signup"></a>
+            </div>
+            <div class="col-md-4 col-12 text-end">
+              <button type="button" class="btn btn-success fw-bold" e-text-if="do_login" word="login" process="login" belong-to="login" e-feature="cfl"></button>
+            </div>
+          </div>
+          <div class="lic"> <select class="lan-input form-control"></select> </div>
+        </div>
+      </form>
+
+      <form class="form" id="signup">
+        <div class="text-center w-100 fs-2 fw-bold mb-4" word="signup"></div>
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-md-6 col-lg-4 col-12 mb-md-0 mb-2"><input belong="signup" class="form-control form-input" type="text" word="username" feature="placeholder" maxlength="20" id="signup-uname-input"></div>
+            <div class="col-md-6 col-lg-4 col-12 mb-2"><input belong="signup" class="form-control form-input" type="password" word="password" feature="placeholder" maxlength="25" id="signup-pass-input"></div>
+            <div class="col-lg-4 col-12"><input belong="signup" class="form-control form-input" type="password" word="password_again" feature="placeholder" maxlength="25" id="signup-pass-again-input"></div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-8 col-12 mb-md-0 mb-3 pt-1">
+              <span word="already_have_account"></span>? <a e-text="." e-feature="cfl" e-text-if="do_login" word="login" href="#" form="login"></a>
+            </div>
+            <div class="col-md-4 col-12 text-end">
+              <button type="button" class="btn btn-success fw-bold" e-text-if="do_signup" word="signup" process="signup" belong-to="signup" e-feature="cfl"></button>
+            </div>
+          </div>
+          <div class="lic"> <select class="lan-input form-control"></select> </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/connection.js"></script>
+    <script src="js/login.js" type="module"></script>
+    <script src="js/language.js" type="module"></script>
+  </body>
+</html>
