@@ -134,7 +134,6 @@ io.on('connection', s => {
             pass = data.pass;
           } catch { ban(s.id); }
           response = await findUser({uname:uname,pass:pass}, 'user');
-          if(response) {}
           if(typeof(callback) == 'function') {
             if(response) {
               u_name = uname;

@@ -1,5 +1,5 @@
 import { Functions } from '../class/utils.js';
-import { MAPS, FLOORS, FLOOR } from '../class/map.js';
+import { FLOOR } from '../class/map.js';
 import { WORDS } from '../class/languages.js';
 import { new_hero } from '../class/heroes.js';
 
@@ -12,7 +12,8 @@ map = null,
 char = null,
 ratio = 0,
 multiplier = 100,
-maxBlock_w = 15;
+maxBlock_w = 15,
+character = null;
 
 export function load_game() {
   if(page == 'game') {
@@ -66,6 +67,29 @@ function setWidth() {
     ratio = canvas.width / maxBlock_w;
   }
 }
+
+function drawChar() {
+  let change_state = new Function("{char, state}", character.change_state);
+  let cs = character.state;
+  if(cs == null) {
+    character.state = "BACKWARD"
+    let ncs = character.states[character.state];
+  }
+  let img = f.gid(character.i);
+  console.log()
+  context.drawImage(
+    img,
+    character.frames[character.frame].x * character.w,
+    character.frames[character.frame].y * character.h,
+    character.w,
+    character.h,
+    character.x / multiplier * ratio,
+    character.y / multiplier * ratio,
+    ratio,
+    ratio
+  );
+}
+
 function drawMap() {
   map.forEach((row, rowIndex) => {
     row.forEach((c, colIndex) => {
@@ -90,14 +114,15 @@ function animation(timeStamp) {
   let deltaTime = timeStamp - lastTime;
   lastTime = timeStamp;
   if(map != null) drawMap();
+  if(character != null) drawChar();
   requestAnimationFrame(animation);
 }
 
-s.on('yourChar', (character) => {
-  if(JSON.stringify(character) != '{}') {
+s.on('yourChar', (res) => {
+  if(JSON.stringify(res) != '{}') {
     f.gid('game-block').style.display = 'none';
     f.gid('choose-char').style.display = 'none';
-    console.log(character);
+    character = res;
   } else {
     f.gid('choose-char').style.display = 'flex';
     f.qsa('[char]').forEach(el => {el.width = f.mf(f.gid('screen').offsetWidth * 0.45);});
