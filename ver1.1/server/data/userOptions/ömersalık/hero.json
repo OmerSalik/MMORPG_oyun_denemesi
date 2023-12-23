@@ -1,0 +1,85 @@
+{
+  "health": 20000,
+  "mana": 20000,
+  "speed": 150,
+  "i": "player",
+  "w": 32,
+  "h": 32,
+  "x": 250,
+  "y": 250,
+  "frames": [
+    {
+      "x": 7,
+      "y": 7
+    },
+    {
+      "x": 11,
+      "y": 7
+    }
+  ],
+  "frame": 0,
+  "states": {
+    "FORWARD": {
+      "init": {
+        "frames": [
+          {
+            "x": 5,
+            "y": 7
+          },
+          {
+            "x": 9,
+            "y": 7
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "BACKWARD": {
+      "init": {
+        "frames": [
+          {
+            "x": 7,
+            "y": 7
+          },
+          {
+            "x": 11,
+            "y": 7
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "RIGHT": {
+      "init": {
+        "frames": [
+          {
+            "x": 6,
+            "y": 7
+          },
+          {
+            "x": 10,
+            "y": 7
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "LEFT": {
+      "init": {
+        "frames": [
+          {
+            "x": 8,
+            "y": 7
+          },
+          {
+            "x": 0,
+            "y": 8
+          }
+        ],
+        "frame": 0
+      }
+    }
+  },
+  "state": "BACKWARD",
+  "change_state": "\n    if(char.state != state) {\n      console.log(char);\n      char.state = state;\n      char.frames = char.states[state].init.frames;\n      char.frame = char.states[state].init.frame;\n    }\n    "
+}

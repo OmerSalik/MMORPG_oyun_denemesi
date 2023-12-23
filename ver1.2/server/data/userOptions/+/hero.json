@@ -1,0 +1,86 @@
+{
+  "health": 20000,
+  "mana": 20000,
+  "speed": 120,
+  "i": "player",
+  "w": 32,
+  "h": 32,
+  "hitbox_ratio": 80,
+  "x": 100,
+  "y": 100,
+  "frames": [
+    {
+      "x": 700,
+      "y": 700
+    },
+    {
+      "x": 1100,
+      "y": 700
+    }
+  ],
+  "frame": 0,
+  "states": {
+    "FORWARD": {
+      "init": {
+        "frames": [
+          {
+            "x": 500,
+            "y": 700
+          },
+          {
+            "x": 900,
+            "y": 700
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "BACKWARD": {
+      "init": {
+        "frames": [
+          {
+            "x": 700,
+            "y": 700
+          },
+          {
+            "x": 1100,
+            "y": 700
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "RIGHT": {
+      "init": {
+        "frames": [
+          {
+            "x": 600,
+            "y": 700
+          },
+          {
+            "x": 1000,
+            "y": 700
+          }
+        ],
+        "frame": 0
+      }
+    },
+    "LEFT": {
+      "init": {
+        "frames": [
+          {
+            "x": 800,
+            "y": 700
+          },
+          {
+            "x": 0,
+            "y": 800
+          }
+        ],
+        "frame": 0
+      }
+    }
+  },
+  "state": "BACKWARD",
+  "change_state": "\n    if(char.state != state) {\n      console.log(char);\n      char.state = state;\n      char.frames = char.states[state].init.frames;\n      char.frame = char.states[state].init.frame;\n    }\n    "
+}
